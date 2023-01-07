@@ -22,7 +22,8 @@ public class GenerateAllReportsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
 
-            batchDispatcher.send("SEND_MESSAGE_TO_ALL_USERS", "USER_GENERATE_READING_REPORT", "USER_GENERATE_READING_REPORT");
+            batchDispatcher.send("SEND_MESSAGE_TO_ALL_USERS", "USER_GENERATE_READING_REPORT",
+                    "USER_GENERATE_READING_REPORT");
 
             System.out.println("Sent generated reports to all users!");
             resp.getWriter().println("Report requests generated!");
