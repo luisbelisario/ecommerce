@@ -8,8 +8,8 @@ public class NewOrderMain {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         var email = Math.random() + "@email.com";
-        try (var orderDispatcher = new KafkaDispatcher<Order>()) {
-            try (var emailDispatcher = new KafkaDispatcher<String>()) {
+        try (var orderDispatcher = new KafkaDispatcher<Order>(NewOrderMain.class.getSimpleName())) {
+            try (var emailDispatcher = new KafkaDispatcher<String>(NewOrderMain.class.getSimpleName())) {
                 for (var i = 0; i < 10; i++) {
 
                     var orderId = UUID.randomUUID().toString();

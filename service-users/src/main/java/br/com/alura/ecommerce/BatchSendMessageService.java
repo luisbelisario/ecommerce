@@ -15,7 +15,7 @@ public class BatchSendMessageService {
 
     private final Connection connection;
 
-    private final KafkaDispatcher<User> userDispatcher = new KafkaDispatcher<>();
+    private final KafkaDispatcher<User> userDispatcher = new KafkaDispatcher<>(BatchSendMessageService.class.getSimpleName());
 
     BatchSendMessageService() throws SQLException {
         String url = "jdbc:sqlite:/Users/luissantos/Projetos/ecommerce/service-users/target/users_database.db";
@@ -32,7 +32,7 @@ public class BatchSendMessageService {
     public static void main(String[] args) throws SQLException {
         var batchService = new BatchSendMessageService();
         try (var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName(),
-                "SEND_MESSAGE_TO_ALL_USERS",
+                "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",
                 batchService::parse,
                 String.class,
                 Map.of())) {

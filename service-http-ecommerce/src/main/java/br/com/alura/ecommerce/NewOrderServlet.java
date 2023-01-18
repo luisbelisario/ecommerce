@@ -12,9 +12,9 @@ import java.util.concurrent.ExecutionException;
 
 public class NewOrderServlet extends HttpServlet {
 
-    private final KafkaDispatcher<Order> orderDispatcher = new KafkaDispatcher<>();
+    private final KafkaDispatcher<Order> orderDispatcher = new KafkaDispatcher<>(NewOrderServlet.class.getSimpleName());
 
-    private final KafkaDispatcher<String> emailDispatcher = new KafkaDispatcher<>();
+    private final KafkaDispatcher<String> emailDispatcher = new KafkaDispatcher<>(NewOrderServlet.class.getSimpleName());
 
     @Override
     public void destroy() {
